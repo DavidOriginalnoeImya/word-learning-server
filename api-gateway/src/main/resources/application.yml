@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: phrase-service
+          uri: ${PHRASE_SERVICE_URL:http://localhost:8086}
+          predicates:
+            - Path=/phrase-service/**
+          filters:
+            - StripPrefix=1
+        - id: translation-service
+          uri: ${TRANSLATION_SERVICE_URL:http://localhost:8085/}
+          predicates:
+            - Path=/translation-service/**
+          filters:
+            - StripPrefix=1
