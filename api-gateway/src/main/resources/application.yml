@@ -1,6 +1,12 @@
 spring:
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedHeaders: "*"
+            allowedOrigins: "*"
+            allowedMethods: "*"
       routes:
         - id: phrase-service
           uri: ${PHRASE_SERVICE_URL:http://localhost:8086}
